@@ -23,7 +23,7 @@ const SPEAKERS = [
 
 export function Speakers() {
     return (
-        <section className="bg-[#0050D8] bg-noise text-white py-24">
+        <section className="bg-[#003380] text-white py-24" style={{ minHeight: '570px' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-16 text-[#FDB931]">Featured Speakers</h2>
 

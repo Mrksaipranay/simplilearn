@@ -34,7 +34,7 @@ export function RsvpForm() {
   }
 
   return (
-    <div className="bg-white p-8 md:p-10 rounded-2xl shadow-[0_30px_60px_-12px_rgba(50,50,93,0.25)] max-w-4xl mx-auto -mt-32 relative z-20 border-0">
+    <div className="bg-white p-8 md:p-10 rounded-2xl shadow-[0_30px_60px_-12px_rgba(50,50,93,0.25)] mx-auto -mt-32 relative z-20 border-0" style={{ maxWidth: '651px' }}>
 
       <form action={(formData) => {
         setPending(true);
