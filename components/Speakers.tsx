@@ -23,14 +23,14 @@ const SPEAKERS = [
 
 export function Speakers() {
     return (
-        <section className="bg-simplilearn-blue bg-noise text-white py-24">
+        <section className="bg-[#0050D8] bg-noise text-white py-24">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold mb-16 text-[#FDB931]">Featured Speakers</h2>
 
                 <div className="flex flex-col gap-10 max-w-4xl">
                     {SPEAKERS.map((speaker, i) => (
                         <div key={i} className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 hover:bg-white/5 p-4 rounded-xl transition-colors">
-                            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#FDB931] shrink-0 shadow-lg">
+                            <div className="relative w-24 h-24 rounded-2xl overflow-hidden border-0 shrink-0 shadow-lg">
                                 <Image
                                     src={speaker.image}
                                     alt={speaker.name}

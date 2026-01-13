@@ -84,7 +84,8 @@
 .bg-noise {
   position: relative;
 }
-.bg-noise::before {
+
+/* .bg-noise::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -92,7 +93,7 @@
   pointer-events: none;
   opacity: 0.15;
   mix-blend-mode: overlay;
-}
+} */
 
 .text-gradient-gold {
   background: linear-gradient(90deg, #FDB931 0%, #F5D061 30%, #FDB931 50%, #E8A81E 100%);

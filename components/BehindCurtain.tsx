@@ -48,6 +48,11 @@ export function BehindCurtain() {
                         </p>
 
                         <form action={(formData) => {
+                            // We need to bind the action or handle the pending state logic correctly here if we are unwrapping it from useFormState in a complex way.
+                            // But since we are using useFormState 'formAction' in the hook, we can just pass that.
+                            // However, if we want the "pending" state for the whole form, we might need the handle.
+                            // For simplicity/robustness, we'll keep the direct action call or the wrapper if previously used.
+                            // We will re-use the exact previous working logic.
                             setPending(true);
                             formAction(formData);
                             setTimeout(() => setPending(false), 1000);
@@ -57,9 +62,9 @@ export function BehindCurtain() {
                                 type="email"
                                 placeholder="Enter your work email"
                                 required
-                                className="flex-1 bg-white border-gray-300 h-10 md:h-12"
+                                className="flex-1 bg-white border-gray-300 h-12 text-base"
                             />
-                            <Button type="submit" variant="rsvp" disabled={pending} className="uppercase font-bold tracking-wide px-6 h-10 md:h-12 shadow-lg shadow-orange-500/20">
+                            <Button type="submit" variant="rsvp" disabled={pending} className="bg-[#FDB931] hover:bg-yellow-500 text-black font-bold uppercase tracking-wide px-6 h-12 shadow-lg whitespace-nowrap">
                                 {pending ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                                 RSVP NOW
                             </Button>

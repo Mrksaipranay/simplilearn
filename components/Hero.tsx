@@ -5,7 +5,7 @@ import { Calendar, MapPin } from 'lucide-react';
 
 export function Hero() {
     return (
-        <section className="relative bg-simplilearn-blue bg-noise text-white pt-12 pb-40 overflow-hidden font-sans">
+        <section className="relative bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#003380] via-[#001D4A] to-[#000F26] bg-noise text-white pt-12 pb-40 overflow-hidden font-sans">
             {/* Background Effects */}
             <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-overlay">
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center"></div>
