@@ -28,7 +28,6 @@ const Speakers = () => {
                 background: 'linear-gradient(180deg, #1C4EF1 0%, #1A3CB6 100%)'
             }}
         >
-            {/* Dark overlay to simulate Figma Plus Darker */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -63,7 +62,6 @@ const Speakers = () => {
                     </div>
                 </div>
 
-                {/* Additional Perspectives Banner */}
                 <div className="mt-16 md:mt-24 max-w-[1240px] mx-auto relative rounded-lg overflow-hidden shadow-2xl flex items-center justify-start px-6 py-10 md:px-20 md:py-12 min-h-[224px]">
                     <Image
                         src="/expert-bg.png"

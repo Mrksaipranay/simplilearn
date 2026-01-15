@@ -12,14 +12,12 @@ export default function Home() {
     <main className="min-h-screen bg-white overflow-x-hidden">
       <Hero />
 
-      {/* RSVP Section (Immediately following Hero) */}
       <section className="relative z-30 w-full bg-[#F8F8F8] py-8 md:py-16">
         <div className="mx-auto px-6 md:px-12 lg:px-24 max-w-[1440px]">
           <RSVPForm />
         </div>
       </section>
 
-      {/* Intro Content Section */}
       <section className="relative z-20 w-full bg-white">
         <div className="mx-auto pt-2 pb-16 md:pb-24 max-w-[1440px]">
           <div className="px-6 mx-auto space-y-10 md:space-y-16 text-left max-w-[1240px]">
@@ -50,23 +48,17 @@ export default function Home() {
         </div>
       </section>
 
-
-
-
-      {/* Capabilities Section */}
       <div className="mt-24">
         <Capabilities />
       </div>
 
-      {/* Speakers Section */}
       <Speakers />
 
-      {/* Walk Away & Insights Section */}
       <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
         <div className="mx-auto max-w-[1440px]">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start justify-between">
-            {/* Text Content */}
-            <div className="w-full lg:max-w-[700px] xl:max-w-[801px] relative z-10">
+
+            <div className="w-full lg:flex-1 lg:max-w-[700px] xl:max-w-[801px] relative z-10">
               <h2 className="text-3xl md:text-[40px] font-black text-[#F5AB40] mb-8 md:mb-12 leading-[1.1] max-w-[687px]">
                 Go behind the curtain with real examples and high-scale insights
               </h2>
@@ -92,8 +84,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Image Content - Responsive & In-Flow */}
-            <div className="w-full lg:w-auto flex justify-center lg:justify-end lg:sticky lg:top-8">
+
+            <div className="w-full lg:w-[570px] lg:shrink-0 flex justify-center lg:justify-end lg:sticky lg:top-8">
               <div className="relative w-full max-w-[500px] lg:max-w-[570px] aspect-[570/611]">
                 <Image
                   src="/chess-pieces.png"

@@ -37,7 +37,6 @@ const RSVPForm = () => {
                 onSubmit={handleSubmit}
                 className="flex flex-col md:flex-row items-center gap-4 md:gap-6"
             >
-                {/* Email Input */}
                 <div className="flex-1 relative flex items-center rounded-lg border border-black/5 bg-[#FDFDFD] shadow-sm w-full h-[60px] md:h-[81px]">
                     <Mail className="absolute left-4 md:left-6 text-gray-400 w-5 h-5 md:w-6 md:h-6" />
 
@@ -65,7 +64,6 @@ const RSVPForm = () => {
                     />
                 </div>
 
-                {/* Submit Button */}
                 <button
                     type="submit"
                     disabled={status === 'loading'}
@@ -90,7 +88,6 @@ const RSVPForm = () => {
                 </button>
             </form>
 
-            {/* Status Message */}
             {message && (
                 <p
                     className={`mt-4 text-center font-medium ${status === 'success' ? 'text-green-500' : 'text-red-500'

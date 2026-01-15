@@ -5,7 +5,6 @@ export async function submitRSVP(email: string) {
     const baseId = process.env.AIRTABLE_BASE_ID;
     const tableName = process.env.AIRTABLE_TABLE_NAME || 'RSVPs';
 
-    // Basic email validation
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return { success: false, error: 'Please enter a valid work email address.' };
     }
@@ -38,7 +37,6 @@ export async function submitRSVP(email: string) {
         if (!response.ok) {
             console.error('Airtable API Error:', data);
 
-            // Handle specific Airtable errors if needed
             if (response.status === 401) {
                 return { success: false, error: 'Authentication failed with Airtable.' };
             }
