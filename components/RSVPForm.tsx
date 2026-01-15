@@ -25,19 +25,19 @@ const RSVPForm = () => {
                 setStatus('error');
                 setMessage(result?.error || 'Something went wrong. Please try again.');
             }
-        } catch (error) {
+        } catch {
             setStatus('error');
             setMessage('A network error occurred. Please try again.');
         }
     };
 
     return (
-        <div className="w-full max-w-[881px]">
+        <div className="w-full max-w-220.25">
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col md:flex-row items-center gap-4 md:gap-6"
             >
-                <div className="flex-1 relative flex items-center rounded-lg border border-black/5 bg-[#FDFDFD] shadow-sm w-full h-[60px] md:h-[81px]">
+                <div className="flex-1 relative flex items-center rounded-lg border border-black/5 bg-[#FDFDFD] shadow-sm w-full h-15 md:h-20.25">
                     <Mail className="absolute left-4 md:left-6 text-gray-400 w-5 h-5 md:w-6 md:h-6" />
 
                     <input
@@ -68,8 +68,8 @@ const RSVPForm = () => {
                     type="submit"
                     disabled={status === 'loading'}
                     className="
-            w-full md:w-[251px]
-            h-[60px] md:h-[81px]
+            w-full md:w-62.75
+            h-15 md:h-20.25
             rounded-lg
             text-white font-bold
             flex items-center justify-center

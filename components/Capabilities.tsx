@@ -36,7 +36,7 @@ const capabilities = [
 const Capabilities = () => {
     return (
         <section className="py-16 md:py-24 bg-[#E8F0FF] px-6">
-            <div className="mx-auto max-w-[1240px]">
+            <div className="mx-auto max-w-310">
                 <h2 className="text-3xl md:text-5xl font-bold text-primary mb-8 px-2">What We&apos;ll Explore</h2>
                 <p className="text-xl md:text-2xl text-black font-semibold mb-12 px-2">
                     The critical shifts every enterprise must plan for:
@@ -46,7 +46,7 @@ const Capabilities = () => {
                     {capabilities.map((item, index) => (
                         <div
                             key={index}
-                            className="bg-white px-6 py-8 md:px-8 md:py-10 rounded-lg w-full shadow-[0px_4px_34px_0px_#00000026] flex flex-col items-start transition-transform hover:scale-[1.02] h-full min-h-[200px]"
+                            className="bg-white px-6 py-8 md:px-8 md:py-10 rounded-lg w-full shadow-[0px_4px_34px_0px_#00000026] flex flex-col items-start transition-transform hover:scale-[1.02] h-full min-h-50"
                         >
                             <div className="flex items-center gap-4 mb-6">
                                 <item.icon className="w-8 h-8 text-blue-600 shrink-0" />

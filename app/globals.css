@@ -48,4 +48,17 @@ body {
 
 .cyan-gradient {
   background: linear-gradient(to right, #00E5FF, #00B4D8);
+}/* Hide Vercel Toolbar */
+[data-nextjs-toast],
+div[class*="vercel-toolbar"],
+#vercel-toolbar,
+.vercel-toolbar-container {
+    display: none !important;
+}
+[data-nextjs-dialog-overlay],
+#nextjs-dev-tools-overlay,
+nextjs-portal {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }

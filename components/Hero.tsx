@@ -33,8 +33,8 @@ const Hero = () => {
             />
 
 
-            <div className="relative z-20 w-full mx-auto px-6 md:px-12 lg:px-24 flex flex-col pt-12 pb-16 md:pt-16 md:pb-24 max-w-[1440px]">
-                <div className="relative mb-12 md:mb-20 w-[200px] h-[46px] md:w-[280px] md:h-[65px]">
+            <div className="relative z-20 w-full mx-auto px-6 md:px-12 lg:px-24 flex flex-col pt-12 pb-16 md:pt-16 md:pb-24 max-w-360">
+                <div className="relative mb-12 md:mb-20 w-50 md:w-70 aspect-[280/65]">
                     <Image
                         src="/logo-white.png"
                         alt="Simplilearn Logo"
@@ -45,7 +45,7 @@ const Hero = () => {
                     />
                 </div>
 
-                <div className="flex flex-col gap-6 md:gap-8 max-w-[1100px]">
+                <div className="flex flex-col gap-6 md:gap-8 max-w-275">
                     <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 items-start">
                         <span className="bg-[#00FFFF] text-black font-black px-4 py-2 md:px-6 md:py-2.5 rounded-sm text-sm md:text-xl uppercase tracking-wider inline-block">
                             Invite-Only

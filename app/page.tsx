@@ -2,7 +2,6 @@ import Hero from '@/components/Hero';
 import RSVPForm from "@/components/RSVPForm";
 import Capabilities from '@/components/Capabilities';
 import Speakers from '@/components/Speakers';
-import { CheckCircle2 } from "lucide-react";
 import React from 'react';
 import Image from 'next/image';
 
@@ -13,23 +12,23 @@ export default function Home() {
       <Hero />
 
       <section className="relative z-30 w-full bg-[#F8F8F8] py-8 md:py-16">
-        <div className="mx-auto px-6 md:px-12 lg:px-24 max-w-[1440px]">
+        <div className="mx-auto px-6 md:px-12 lg:px-24 max-w-360">
           <RSVPForm />
         </div>
       </section>
 
       <section className="relative z-20 w-full bg-white">
-        <div className="mx-auto pt-2 pb-16 md:pb-24 max-w-[1440px]">
-          <div className="px-6 mx-auto space-y-10 md:space-y-16 text-left max-w-[1240px]">
+        <div className="mx-auto pt-2 pb-16 md:pb-24 max-w-360">
+          <div className="px-6 mx-auto space-y-10 md:space-y-16 text-left max-w-310">
 
-            <p className="text-xl md:text-[26px] text-gray-800 font-medium leading-relaxed md:leading-[39px]">
+            <p className="text-xl md:text-[26px] text-gray-800 font-medium leading-relaxed md:leading-9.75">
               AI is accelerating change across every operational layer. Roles are shifting.
               Leadership models are collapsing and reforming. Frontline and mid-level managers
               will soon lead teams of people and intelligent agents.
             </p>
 
             <div className="space-y-6 md:space-y-10">
-              <p className="text-xl md:text-[26px] text-gray-800 font-medium leading-relaxed md:leading-[39px]">
+              <p className="text-xl md:text-[26px] text-gray-800 font-medium leading-relaxed md:leading-9.75">
                 But even the most advanced enterprises are asking the same question:
               </p>
 
@@ -39,7 +38,7 @@ export default function Home() {
               </h3>
             </div>
 
-            <p className="text-xl md:text-[26px] text-gray-800 font-medium leading-relaxed md:leading-[39px]">
+            <p className="text-xl md:text-[26px] text-gray-800 font-medium leading-relaxed md:leading-9.75">
               This invite-only roundtable gathers CHROs, CLOs, and enterprise workforce leaders
               for a candid, senior-level discussion on what’s coming next.
             </p>
@@ -55,48 +54,55 @@ export default function Home() {
       <Speakers />
 
       <section className="py-16 md:py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start justify-between">
+        <div className="mx-auto max-w-360">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-0 lg:gap-x-16 items-start">
 
-            <div className="w-full lg:flex-1 lg:max-w-[700px] xl:max-w-[801px] relative z-10">
-              <h2 className="text-3xl md:text-[40px] font-black text-[#F5AB40] mb-8 md:mb-12 leading-[1.1] max-w-[687px]">
-                Go behind the curtain with real examples and high-scale insights
-              </h2>
-
-              <h3 className="text-2xl font-bold text-black mb-8 md:mb-10">You&apos;ll walk away with:</h3>
-              <ul className="space-y-6 md:space-y-8 mb-12 md:mb-16">
-                {[
-                  'A clear view of the leadership & workforce capabilities that will matter most over the next 24-36 months.',
-                  'Insights from high-scale operating environments including the former CLO of McDonald’s on what truly scales and what breaks under pressure.',
-                  'Signals for where capability gaps may already be forming in your organization.',
-                  'Peer-validated perspectives from leaders running workforce, talent, and transformation ecosystems at scale.',
-                  'Actionable insights you can take straight into your next exec meeting.'
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-4 md:gap-8 items-start">
-                    <div className="bg-[#F5AB40] shrink-0 w-[3px] min-h-[40px] py-1 self-stretch" />
-                    <span className="text-lg md:text-[20px] text-black font-medium py-1 leading-relaxed md:leading-[30px]">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-col items-start pt-4 md:pt-8 w-full">
-                <RSVPForm />
-              </div>
-            </div>
-
-
-            <div className="w-full lg:w-[570px] lg:shrink-0 flex justify-center lg:justify-end lg:sticky lg:top-8">
-              <div className="relative w-full max-w-[500px] lg:max-w-[570px] aspect-[570/611]">
+            <div className="order-1 lg:col-start-8 lg:col-span-5 lg:row-start-1 lg:row-span-3 w-full flex justify-center lg:justify-end mb-8 lg:mb-0">
+              <div className="relative w-full mx-auto
+                max-w-[420px]
+                sm:max-w-[480px]
+                md:max-w-[520px]
+                lg:max-w-[570px]
+                aspect-[570/611]
+                lg:mx-0">
                 <Image
                   src="/chess-pieces.png"
                   alt="Strategic Insights"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 570px"
-                  className="object-contain"
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 90vw, 570px"
                   priority
+                  unoptimized
                 />
               </div>
             </div>
+
+            <h2 className="order-2 lg:col-span-7 lg:row-start-1 text-3xl md:text-[40px] font-black text-[#F5AB40] mb-8 lg:mb-12 leading-[1.1] max-w-171.75">
+              Go behind the curtain with real examples and high-scale insights
+            </h2>
+
+            <div className="order-3 lg:col-span-7 space-y-6 md:space-y-8 mb-12 md:mb-16 mt-8 lg:mt-0">
+              <h3 className="text-2xl font-bold text-black mb-8 md:mb-10">You&apos;ll walk away with:</h3>
+              <ul className="space-y-6 md:space-y-8">
+                {[
+                  'A clear view of the leadership & workforce capabilities that will matter most over the next 24-36 months.',
+                  'Insights from high-scale operating environments including the former CLO of McDonald\'s on what truly scales and what breaks under pressure.',
+                  'Signals for where capability gaps may already be forming in your organization.',
+                  'Peer-validated perspectives from leaders running workforce, talent, and transformation ecosystems at scale.',
+                  'Actionable insights you can take straight into your next exec meeting.'
+                ].map((item: string, i: number) => (
+                  <li key={i} className="flex gap-4 md:gap-8 items-start">
+                    <div className="bg-[#F5AB40] shrink-0 w-0.75 min-h-10 py-1 self-stretch" />
+                    <span className="text-lg md:text-[20px] text-black font-medium py-1 leading-relaxed md:leading-7.5">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="order-4 lg:col-span-7 flex flex-col items-start w-full">
+              <RSVPForm />
+            </div>
+
           </div>
         </div>
       </section>
@@ -140,15 +146,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA & Footer Overlay */}
-      <section className="relative flex flex-col justify-between overflow-hidden min-h-[475px]">
-        <Image
-          src="/restaurant-footer.png"
-          alt="Chamberlain's Steak & Fish House"
-          fill
-          sizes="100vw"
-          className="object-cover brightness-50"
-        />
+      <section className="relative flex flex-col justify-between overflow-hidden min-h-118.75">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/restaurant-footer.png"
+            alt="Chamberlain's Steak & Fish House"
+            fill
+            sizes="100vw"
+            className="object-cover brightness-50"
+          />
+        </div>
 
         {/* Top Content: Heading & Form */}
         <div className="relative z-10 pt-16 px-6 md:px-24">
@@ -169,7 +176,7 @@ export default function Home() {
         <div className="relative z-10 pb-12 px-6 md:px-24">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
             <div className="flex flex-col">
-              <div className="relative w-[250px] h-[60px]">
+              <div className="relative w-62.5 aspect-[250/60]">
                 <Image
                   src="/logo-white.png"
                   alt="Simplilearn Logo"
