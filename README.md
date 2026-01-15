@@ -1,26 +1,27 @@
 # Simplilearn Executive Roundtable - Landing Page
 
-A pixel-perfect, production-ready Next.js landing page for the Simplilearn Executive Roundtable event.
+This project is a pixel-perfect reconstruction of the Simplilearn Executive Roundtable landing page, built with Next.js 15 and Tailwind CSS.
+
+The goal was to create a high-performance, responsive landing page that strictly matches the provided Figma design while implementing a real backend integration for the RSVP form.
+
+## 🔗 Quick Links
+
+- **Live Demo:** [https://simple-learn-tm2x.vercel.app/](https://simple-learn-tm2x.vercel.app/)
+- **Airtable Database:** [View Database](https://airtable.com/appyRKyeBnihO6BMx/shrMzyUH785GCFkqu)
 
 ## Tech Stack
 
-- **Framework**: Next.js 16.1.1 (App Router)
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS 4
-- **Backend**: Airtable (via Server Actions)
-- **Fonts**: Google Fonts (Geist, Outfit)
-- **Image Optimization**: Next.js Image component
-- **Icons**: Lucide React
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS 4
+- **Backend:** Airtable (integrated via Server Actions)
+- **Language:** TypeScript
 
-## Features
+## Key Features
 
-- ✅ Fully responsive design (desktop & mobile)
-- ✅ Server-side form handling with Airtable integration
-- ✅ Zero client-side API calls
-- ✅ Optimized images with proper sizing
-- ✅ Production-ready code
-- ✅ TypeScript strict mode
-- ✅ Vercel-ready deployment
+- **Pixel-Perfect Design:** Closely follows the original Figma mockup across desktop and mobile breakpoints.
+- **Server-Side Forms:** The RSVP form uses Next.js Server Actions for secure, Javascript-free (progressive enhancement) submission directly to Airtable.
+- **Performance:** Optimized images using `next/image` and zero client-side API waterfalls.
+- **Type Safety:** Written in strict TypeScript to ensure reliability.
 
 ## Getting Started
 
@@ -93,13 +94,12 @@ simplilearn/
 └── tsconfig.json               # TypeScript configuration
 ```
 
-## Code Quality Standards
+## Implementation Notes
 
-- **No API routes**: Forms use Server Actions exclusively
-- **Server-first**: Components are Server Components by default
-- **TypeScript strict**: Full type safety across codebase
-- **Minimal dependencies**: Only essential packages
-- **Clean code**: No over-engineering or abstractions
+- **Architecture:** I opted for Server Components by default to keep the client bundle small.
+- **Forms:** The RSVP form uses Server Actions exclusively—no API routes were needed.
+- **Styling:** Used standard Tailwind utility classes; no custom CSS files (except for global directives).
+- **Clean Code:** Kept dependencies minimal and structure flat.
 
 ## Building for Production
 
