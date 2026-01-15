@@ -1,73 +1,90 @@
-'use client';
+import React from 'react';
+import { Calendar, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
-import { motion } from 'framer-motion';
-// import { Calendar, MapPin } from 'lucide-react'; // Icons not strictly requested in locked spec text but kept if needed or replaced by text per spec
-
-export function Hero() {
+const Hero = () => {
     return (
-        <section className="relative w-full overflow-hidden mx-auto" style={{ maxWidth: '1440px', height: '693px' }}>
-            {/* Background Container Locked */}
+        <section className="relative overflow-hidden bg-[#000511] text-white" style={{height: '693px'}}>
+
+            {/* Background Art Layer */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/hero-bg-v3.png"
+                    alt="Digital Background"
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    priority
+                />
+            </div>
+
+            {/* Premium Blue Gradient Overlay with Blend Effect */}
             <div
-                className="absolute top-0 left-0 w-full h-full"
+                className="absolute inset-0 z-10"
                 style={{
-                    backgroundImage: `
-                        linear-gradient(
-                            287.08deg,
-                            rgba(28, 78, 241, 0.45) -11.11%,
-                            rgba(26, 60, 182, 0.45) 106.32%
-                        ),
-                        url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop")
-                    `,
-                    backgroundBlendMode: 'plus-darker, normal',
-                    filter: 'blur(0.5px)',
-                    transform: 'rotate(180deg)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    zIndex: 0
+                    background: 'linear-gradient(180deg, #1C4EF1 0%, #1A3CB6 100%)',
+                    mixBlendMode: 'multiply',
+                    opacity: 0.5
                 }}
             />
 
-            {/* Overlay Gradient Locked */}
+            {/* Dark contrast overlay layer */}
             <div
-                className="absolute"
+                className="absolute inset-0 z-10"
                 style={{
-                    width: '1440px',
-                    height: '503px',
-                    top: '375px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 53.2%, rgba(0, 0, 0, 0.6) 127.97%)',
-                    zIndex: 1
+                    background: 'rgba(2, 6, 23, 0.55)'
                 }}
             />
 
-            {/* Content Container - Rotated back or just placed on top? The bg is rotated. Content should be normal. */}
-            <div className="relative z-10 w-full h-full flex flex-col items-center pt-[80px]">
 
-                {/* Badge */}
-                <div className="flex flex-col items-center mb-8">
-                    <span className="text-white text-[12px] font-bold uppercase tracking-widest bg-[#0050D8] px-3 py-1 rounded-full mb-2">
-                        Invite-Only
-                    </span>
-                    <span className="text-blue-200 text-[12px] uppercase tracking-widest">
-                        An Executive Roundtable · Lunch
-                    </span>
+            <div className="relative z-20 w-full h-full mx-auto px-6 md:px-12 lg:px-24 flex flex-col pt-16" style={{maxWidth: '1440px'}}>
+                {/* Logo */}
+                <div className="relative mb-20" style={{width: '280px', height: '65px'}}>
+                    <Image
+                        src="/logo-white.png"
+                        alt="Simplilearn Logo"
+                        fill
+                        sizes="(max-width: 768px) 200px, 280px"
+                        className="object-contain object-left"
+                        priority
+                    />
                 </div>
 
-                {/* Headline Locked */}
-                <h1 className="text-white text-center font-bold text-[64px] leading-[1.15] mb-6">
-                    The Skills That Matter Next:<br />
-                    Preparing Your Workforce<br />
-                    & Leaders for the AI Era
-                </h1>
 
-                {/* Meta Line */}
-                <div className="text-white text-[18px] font-medium flex gap-2 items-center">
-                    <span>February 20, 2026</span>
-                    <span className="mx-2">•</span>
-                    <span>Chamberlain’s Steak & Fish House, Dallas</span>
+                {/* Content Wrapper */}
+                <div className="flex flex-col gap-8" style={{maxWidth: '1100px'}}>
+                    {/* Badge and Tagline */}
+                    <div className="flex flex-wrap items-center gap-6">
+                        <span className="bg-[#00FFFF] text-black font-black px-6 py-2.5 rounded-sm text-xl uppercase tracking-wider">
+                            Invite-Only
+                        </span>
+                        <span className="text-[#00FFFF] font-semibold text-2xl">
+                            An Executive Roundtable · Lunch
+                        </span>
+                    </div>
+
+                    {/* Mixed Color Headline */}
+                    <h1 className="text-[48px] md:text-[62px] font-black leading-[1.15] tracking-tight">
+                        <span className="text-[#F5AB40]">The Skills That Matter Next:</span><br />
+                        <span className="text-white">Preparing Your Workforce<br />
+                            & Leaders for the AI Era</span>
+                    </h1>
+
+                    {/* Details */}
+                    <div className="space-y-6 pt-6">
+                        <div className="flex items-center gap-4 text-2xl md:text-3xl font-black">
+                            <Calendar className="text-white w-7 h-7 md:w-8 md:h-8" strokeWidth={3} />
+                            <span>February 20, 2026</span>
+                        </div>
+                        <div className="flex items-center gap-4 text-2xl md:text-3xl font-black">
+                            <MapPin className="text-white w-7 h-7 md:w-8 md:h-8" strokeWidth={3} />
+                            <span>Chamberlain&apos;s Steak & Fish House, Dallas</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
+
+export default Hero;

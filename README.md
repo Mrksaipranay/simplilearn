@@ -1,70 +1,178 @@
-# Simplilearn AI Era Roundtable
+# Simplilearn Executive Roundtable - Landing Page
 
-A pixel-perfect Next.js implementation of the Simplilearn landing page design.
+A pixel-perfect, production-ready Next.js landing page for the Simplilearn Executive Roundtable event.
+
+## Tech Stack
+
+- **Framework**: Next.js 16.1.1 (App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **Backend**: Airtable (via Server Actions)
+- **Fonts**: Google Fonts (Geist, Outfit)
+- **Image Optimization**: Next.js Image component
+- **Icons**: Lucide React
 
 ## Features
 
-- **Framework**: Next.js 14 (App Router)
-- **Styling**: Tailwind CSS with custom design system
-- **Components**: Modular, reusable components with Shadcn UI primitives
-- **Animations**: Framer Motion for smooth entrances and interactions
-- **Forms**: Server Actions for RSVP submission
-- **Backend**: Airtable integration for data persistence
+- ✅ Fully responsive design (desktop & mobile)
+- ✅ Server-side form handling with Airtable integration
+- ✅ Zero client-side API calls
+- ✅ Optimized images with proper sizing
+- ✅ Production-ready code
+- ✅ TypeScript strict mode
+- ✅ Vercel-ready deployment
 
 ## Getting Started
 
-1. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+### Prerequisites
 
-2. **Environment Variables**
-   Create a `.env.local` file for Airtable integration (optional for dev, required for real data):
-   ```
-   AIRTABLE_API_KEY=your_api_key
-   AIRTABLE_BASE_ID=your_base_id
-   AIRTABLE_TABLE_NAME=RSVPs
-   ```
+- Node.js 18+ 
+- npm or yarn
+- Airtable account with API key
 
-3. **Run Development Server**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Local Development
 
-## Building for Production & Deployment
+1. **Clone the repository** and install dependencies:
 
-### Deploying to Vercel (Recommended)
+```bash
+npm install
+```
 
-1. **Push to GitHub/GitLab/Bitbucket**:
-   Ensure this repository is pushed to your git provider.
+2. **Set up environment variables**:
 
-2. **Import Project to Vercel**:
-   - Go to [Vercel Dashboard](https://vercel.com/dashboard) -> **Add New** -> **Project**.
-   - Select your repository.
+Create a `.env.local` file in the root directory:
 
-3. **Configure Environment Variables**:
-   In the Vercel project settings during import (or later in Settings > Environment Variables), add the following:
-   ```
-   AIRTABLE_API_KEY=your_airtable_api_key
-   AIRTABLE_BASE_ID=your_base_id
-   AIRTABLE_TABLE_NAME=RSVPs
-   ```
+```bash
+cp .env.example .env.local
+```
 
-4. **Deploy**:
-   Click **Deploy**. Vercel will automatically detect Next.js and build the application.
-   
-   - **Framework Preset**: Next.js
-   - **Build Command**: `next build` (default)
-   - **Output Directory**: `.next` (default)
+3. **Add your Airtable credentials** to `.env.local`:
 
-The application will be live instantly with server-side features (Server Actions) fully functional.
+```env
+AIRTABLE_API_KEY=your_pat_token_here
+AIRTABLE_BASE_ID=your_base_id_here
+AIRTABLE_TABLE_NAME=RSVPs
+```
+
+**How to get Airtable credentials:**
+- **API Key**: Create a Personal Access Token at https://airtable.com/create/tokens
+- **Base ID**: Find it in the URL when viewing your base (e.g., `appXXXXXXXXXXXXXXXX`)
+- **Table Name**: The name of the table where RSVPs will be stored
+
+4. **Run the development server**:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the page.
 
 ## Project Structure
 
-- `/app`: App Router pages and layout
-- `/components`: UI components (Hero, Speakers, Agenda, etc.)
-- `/components/ui`: Reusable Shadcn UI primitives
-- `/lib`: Utilities and helpers
-- `globals.css`: Base styles and Tailwind directives
-- `tailwind.config.ts`: Design system configuration (colors, fonts)
+```
+simplilearn/
+├── app/
+│   ├── actions.ts              # Server Action for RSVP form
+│   ├── globals.css             # Tailwind imports
+│   ├── layout.tsx              # Root layout with fonts
+│   └── page.tsx                # Main landing page
+├── components/
+│   ├── Capabilities.tsx        # Skills/Capabilities section
+│   ├── Hero.tsx                # Hero section with CTA
+│   ├── RSVPForm.tsx            # Interactive RSVP form
+│   └── Speakers.tsx            # Featured speakers section
+├── public/
+│   ├── logo-white.png
+│   ├── hero-bg-v3.png
+│   ├── speakers/               # Speaker photos
+│   └── ...                     # Other assets
+├── .env.example                # Environment template
+├── .env.local                  # Local development (git-ignored)
+├── next.config.ts              # Next.js configuration
+├── package.json                # Dependencies
+└── tsconfig.json               # TypeScript configuration
+```
+
+## Code Quality Standards
+
+- **No API routes**: Forms use Server Actions exclusively
+- **Server-first**: Components are Server Components by default
+- **TypeScript strict**: Full type safety across codebase
+- **Minimal dependencies**: Only essential packages
+- **Clean code**: No over-engineering or abstractions
+
+## Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Deployment on Vercel
+
+### One-Click Deploy
+
+1. Push your repository to GitHub
+2. Visit [vercel.com/new](https://vercel.com/new)
+3. Import the repository
+4. Add environment variables in the Vercel dashboard:
+   - `AIRTABLE_API_KEY`
+   - `AIRTABLE_BASE_ID`
+   - `AIRTABLE_TABLE_NAME`
+5. Deploy!
+
+### Using Vercel CLI
+
+```bash
+npm install -g vercel
+vercel
+```
+
+Follow the prompts and add environment variables when asked.
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `AIRTABLE_API_KEY` | Yes | Personal Access Token from Airtable |
+| `AIRTABLE_BASE_ID` | Yes | Base ID from Airtable |
+| `AIRTABLE_TABLE_NAME` | No | Table name (defaults to `RSVPs`) |
+
+## Form Handling
+
+The RSVP form is handled entirely on the server using Next.js Server Actions (`app/actions.ts`):
+
+- Email validation happens server-side
+- Direct integration with Airtable API
+- No client-side API calls
+- Secure credential handling
+- Error handling and user feedback
+
+## Performance Optimization
+
+- Images optimized with Next.js Image component
+- Proper `sizes` attributes for responsive images
+- CSS-in-JS (Tailwind) only, no extra CSS files
+- Static site generation (SSG) where possible
+- Minimal JavaScript bundle
+
+## Troubleshooting
+
+### Form not submitting?
+- Check that `AIRTABLE_API_KEY` and `AIRTABLE_BASE_ID` are set in `.env.local`
+- Verify the Airtable API key has the necessary scopes
+- Check browser console for error messages
+
+### Images not loading?
+- Ensure image files exist in the `public/` directory
+- Check that image `sizes` attributes are properly defined
+- Verify Next.js Image component `alt` text is present
+
+### Build errors?
+- Run `npm install` to ensure all dependencies are installed
+- Delete `.next/` folder and rebuild: `npm run build`
+- Check TypeScript errors: `npx tsc --noEmit`
+
+## License
+
+© 2009-2025 Simplilearn Solutions. All Rights Reserved.

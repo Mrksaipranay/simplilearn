@@ -1,86 +1,109 @@
 'use client';
 
-import { useState } from 'react';
-import { useFormState } from 'react-dom';
-import { submitRsvp } from '@/app/actions';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Checkbox } from './ui/checkbox';
-import { Loader2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { Mail } from 'lucide-react';
+import { submitRSVP } from '@/app/actions';
 
-const CAPABILITIES = [
-  "Skills Data",
-  "Manage Style Shift",
-  "Leaders -> AI Portfolio",
-  "Frontier Capability",
-  "User-Centric Capabilities",
-  "Winning Organizations"
-];
+const RSVPForm = () => {
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [message, setMessage] = useState('');
 
-const initialState = {
-  message: '',
-  error: false
-}
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+        setMessage('');
 
-export function RsvpForm() {
-  // @ts-ignore
-  const [state, formAction] = useFormState(submitRsvp, initialState);
-  const [selected, setSelected] = useState<string[]>([]);
-  const [pending, setPending] = useState(false);
+        try {
+            const result = await submitRSVP(email);
 
-  const toggle = (cap: string) => {
-    setSelected(prev => prev.includes(cap) ? prev.filter(c => c !== cap) : [...prev, cap]);
-  }
+            if (result?.success) {
+                setStatus('success');
+                setMessage('Thank you! Your RSVP has been received.');
+                setEmail('');
+            } else {
+                setStatus('error');
+                setMessage(result?.error || 'Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            setStatus('error');
+            setMessage('A network error occurred. Please try again.');
+        }
+    };
 
-  return (
-    <div className="bg-white p-8 md:p-10 rounded-2xl shadow-[0_30px_60px_-12px_rgba(50,50,93,0.25)] mx-auto -mt-32 relative z-20 border-0" style={{ maxWidth: '651px' }}>
+    return (
+        <div className="w-full" style={{maxWidth: '881px'}}>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col md:flex-row items-center gap-6"
+            >
+                {/* Email Input */}
+                <div className="flex-1 relative flex items-center rounded-lg border border-black/5 bg-[#FDFDFD] shadow-sm w-full" style={{height: '81px'}}>
+                    <Mail className="absolute left-6 text-gray-400 w-6 h-6" />
 
-      <form action={(formData) => {
-        setPending(true);
-        formData.set('capabilities', selected.join(', '));
-        formAction(formData);
-        setTimeout(() => setPending(false), 1000);
-      }} className="mb-10">
-        <div className="flex flex-col sm:flex-row gap-4 p-1">
-          <Input
-            name="email"
-            type="email"
-            placeholder="Enter your professional email"
-            required
-            className="flex-1 h-12 bg-white border-gray-300 focus:border-[#0050D8] focus:ring-1 focus:ring-[#0050D8] text-base"
-          />
-          <Button type="submit" variant="rsvp" disabled={pending} className="w-full sm:w-auto px-10 h-12 text-base font-bold tracking-wide uppercase shadow-lg shadow-orange-500/20">
-            {pending ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-            RSVP NOW
-          </Button>
+                    <input
+                        type="email"
+                        placeholder="Enter your work email to confirm your attendance"
+                        required
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            if (status === 'error') setStatus('idle');
+                            if (message) setMessage('');
+                        }}
+                        disabled={status === 'loading'}
+                        className="
+              w-full h-full
+              pl-16 pr-6
+              bg-transparent
+              text-black
+              placeholder:text-gray-400
+              text-[18px] font-medium
+              border-none
+              focus:outline-none focus:ring-0
+            "
+                    />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="
+            w-full md:w-[251px]
+            rounded-lg
+            text-white font-bold
+            flex items-center justify-center
+            transition-all duration-200
+            disabled:opacity-70 disabled:cursor-not-allowed
+            hover:brightness-110
+            active:brightness-95
+            shadow-[0_10px_30px_rgba(245,171,64,0.3)]
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F5AB40]
+            shrink-0
+          "
+                    style={{
+                        height: '81px',
+                        backgroundColor: '#F5AB40',
+                        fontSize: '20px'
+                    }}
+                >
+                    {status === 'loading' ? 'Processing...' : 'RSVP Now'}
+                </button>
+            </form>
+
+            {/* Status Message */}
+            {message && (
+                <p
+                    className={`mt-4 text-center font-medium ${status === 'success' ? 'text-green-500' : 'text-red-500'
+                        }`}
+                >
+                    {message}
+                </p>
+            )}
         </div>
+    );
 
-        {state.message && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`mt-4 text-center text-sm font-medium p-3 rounded ${state.error ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-700'}`}
-          >
-            {state.message}
-          </motion.div>
-        )}
-      </form>
+};
 
-      <div className="text-left space-y-6">
-        <p className="text-gray-600 leading-relaxed">
-          As AI accelerates, organizations need specific strategies that shift from information assets to influencing workflows. The future capability stack focuses on human-AI protocols and intelligent agency.
-        </p>
-
-        <h3 className="text-2xl md:text-3xl font-bold text-[#001D4A] leading-tight">
-          Which capabilities will matter most,<br className="hidden md:block" />
-          and how do we build them at scale?
-        </h3>
-
-        <p className="text-gray-600 leading-relaxed">
-          This invite-only roundtable gathers CHROs, CLOs, and enterprise workforce leaders for a candid, senior-level discussion on what's coming next.
-        </p>
-      </div>
-    </div>
-  )
-}
+export default RSVPForm;

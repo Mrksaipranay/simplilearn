@@ -1,25 +1,42 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { cn } from '@/lib/utils'
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Outfit } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+});
+
 
 export const metadata: Metadata = {
-  title: 'Simplilearn - The Skills That Matter Next',
-  description: 'Preparing Your Workforce & Leaders for the AI Era',
-}
+  title: "Simplilearn Executive Roundtable | The Skills That Matter Next",
+  description: "Join us for an executive roundtable lunch on the future of workforce skills and AI leadership.",
+};
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body className={cn(inter.variable, "font-sans min-h-screen bg-white antialiased")}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} antialiased font-outfit`}
+      >
+
         {children}
       </body>
     </html>
-  )
+  );
 }
+

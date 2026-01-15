@@ -1,64 +1,92 @@
+import React from 'react';
 import Image from 'next/image';
 
-const SPEAKERS = [
+
+const speakers = [
     {
-        name: "Rob Lauber",
-        role: "Former CLO, McDonald's",
-        bio: "Rob Lauber is a global workforce and capability building leader with over 30 years of experience helping organizations improve outcomes.",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop"
+        name: 'Rob Lauber',
+        role: "Rob Lauber is a global workforce and capability-building leader with over 25 years of experience helping organizations prepare leaders and frontline teams for change. Most recently, he served as SVP and Chief Learning Officer at McDonald's, leading learning and development across 37,000+ restaurants worldwide. His perspective is especially relevant as organizations rethink leadership and capability models in the age of AI.",
+        image: '/speakers/rob-lauber-new.jpg',
     },
     {
-        name: "Krishna Kumar",
-        role: "Founder & CEO, Simplilearn",
-        bio: "Krishna Kumar is the Founder and CEO of Simplilearn. Just looking ahead of the curve in terms of technology, engaging business leaders.",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+        name: 'Krishna Kumar',
+        role: "Krishna Kumar is the Founder and CEO of Simplilearn, working closely with enterprises navigating workforce transformation driven by AI and digital change. At the center of the learning and skills ecosystem, he brings a unique perspective on how roles, leadership expectations, and capabilities are evolving across industries. Through direct engagement with enterprise leaders and education partners, he sees what scales, and what doesn't, in building workforce readiness for the AI era.",
+        image: '/speakers/sudipto-new.png',
     },
     {
-        name: "Sudipto Mitra",
-        role: "CHRO, Tech Mahindra",
-        bio: "Sudipto Mitra is a senior human resources and growth leader with over 20 years of experience helping companies navigate transformations.",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop"
-    }
+        name: 'Sudipto Ghosh',
+        role: "Sudipto is a senior transformation and people leader with over 20 years of experience helping large enterprises navigate complex change and reskill at scale. He has led major initiatives for Fortune 500 companies, focusing on digital fluency and leadership development. His focus is on the practical application of AI tools to enhance human capabilities and business outcomes.",
+        image: '/speakers/krishna-kumar-new.jpg',
+    },
 ];
 
-export function Speakers() {
+const Speakers = () => {
     return (
-        <section className="bg-[#003380] text-white py-24" style={{ minHeight: '570px' }}>
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold mb-16 text-[#FDB931]">Featured Speakers</h2>
+        <section
+            className="relative py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
+            style={{
+                background: 'linear-gradient(180deg, #1C4EF1 0%, #1A3CB6 100%)'
+            }}
+        >
+            {/* Dark overlay to simulate Figma Plus Darker */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    background: 'rgba(2, 6, 23, 0.65)'
+                }}
+            />
 
-                <div className="flex flex-col gap-10 max-w-4xl">
-                    {SPEAKERS.map((speaker, i) => (
-                        <div key={i} className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 hover:bg-white/5 p-4 rounded-xl transition-colors">
-                            <div className="relative w-24 h-24 rounded-2xl overflow-hidden border-0 shrink-0 shadow-lg">
-                                <Image
-                                    src={speaker.image}
-                                    alt={speaker.name}
-                                    fill
-                                    className="object-cover"
-                                />
+            <div className="relative z-10">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary">Featured Speakers</h2>
+
+                    <div className="space-y-16">
+                        {speakers.map((speaker, index) => (
+                            <div key={index} className="flex flex-col md:flex-row gap-12 items-start">
+                                <div className="relative w-full md:w-[320px] aspect-square rounded-2xl overflow-hidden shadow-2xl flex-shrink-0">
+                                    <Image
+                                        src={speaker.image}
+                                        alt={speaker.name}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 320px"
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-3xl font-bold text-secondary mb-4">{speaker.name}</h3>
+                                    <p className="text-xl md:text-2xl leading-relaxed text-white">
+                                        {speaker.role}
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 className="text-2xl font-bold text-white mb-1">{speaker.name}</h3>
-                                <p className="text-sm text-blue-200 mb-3 font-medium uppercase tracking-wider">{speaker.role}</p>
-                                <p className="text-base text-blue-100 leading-relaxed opacity-90 max-w-2xl">
-                                    {speaker.bio}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            {/* Banner Strip - kept but refined */}
-            <div className="container mx-auto px-4 mt-20">
-                <div className="bg-[#003B95]/50 backdrop-blur-sm rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-blue-400/30 shadow-xl">
-                    <div>
-                        <h4 className="font-bold text-xl text-white mb-2">Additional Expert Perspectives</h4>
-                        <p className="text-sm text-blue-200">Social experts from leading consulting and enterprise training organizations will facilitate breakout discussions.</p>
+                {/* Additional Perspectives Banner */}
+                <div className="mt-24 max-w-[1240px] mx-auto relative rounded-lg overflow-hidden shadow-2xl h-[224px] flex items-center justify-start px-20">
+                    <Image
+                        src="/expert-bg.png"
+                        alt="Network Background"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 1240px"
+                        className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-blue-900/30 backdrop-brightness-75" />
+
+                    <div className="relative z-10 max-w-4xl pt-2">
+                        <h3 className="text-[28px] md:text-[32px] font-black text-[#00FFFF] mb-4 leading-tight">
+                            Additional Expert Perspectives
+                        </h3>
+                        <p className="text-[20px] md:text-[24px] font-medium text-white leading-relaxed opacity-95">
+                            Invited experts from leading consulting and enterprise learning organizations will contribute short perspectives, offering insight into how large organizations are evolving skills and leadership models in the AI era.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
-    )
-}
+
+    );
+};
+
+export default Speakers;

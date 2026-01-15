@@ -1,55 +1,54 @@
-'use server'
+'use server';
 
-import { z } from 'zod';
-import Airtable from 'airtable';
+export async function submitRSVP(email: string) {
+    const apiKey = process.env.AIRTABLE_API_KEY;
+    const baseId = process.env.AIRTABLE_BASE_ID;
+    const tableName = process.env.AIRTABLE_TABLE_NAME || 'RSVPs';
 
-const schema = z.object({
-  email: z.string().email(),
-  capabilities: z.string().optional(), // The "Which capabilities..." answer
-});
+    // Basic email validation
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return { success: false, error: 'Please enter a valid work email address.' };
+    }
 
-export async function submitRsvp(prevState: any, formData: FormData) {
-  // Validate
-  const email = formData.get('email');
-  const capabilities = formData.get('capabilities');
+    if (!apiKey || !baseId) {
+        console.error('Airtable configuration missing: Please set AIRTABLE_API_KEY and AIRTABLE_BASE_ID in your environment.');
+        return {
+            success: false,
+            error: 'Server configuration error. Please contact the administrator.'
+        };
+    }
 
-  const validated = schema.safeParse({ email, capabilities });
+    try {
+        const response = await fetch(`https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fields: {
+                    'Email': email,
+                },
+            }),
+            cache: 'no-store'
+        });
 
-  if (!validated.success) {
-    return { message: 'Invalid email or input', error: true };
-  }
+        const data = await response.json();
 
-  // Persist to Airtable
-  // NOTE: In a static export scenario without a proxy, this Server Action
-  // might not be reachable if not deployed to Vercel/Node.
-  // We assume the user has AIRTABLE_API_KEY and AIRTABLE_BASE_ID set.
+        if (!response.ok) {
+            console.error('Airtable API Error:', data);
 
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME || 'RSVPs';
+            // Handle specific Airtable errors if needed
+            if (response.status === 401) {
+                return { success: false, error: 'Authentication failed with Airtable.' };
+            }
 
-  if (!apiKey || !baseId) {
-    console.warn('Airtable credentials missing. Logging to console instead.');
-    console.log('RSVP Submission:', validated.data);
-    return { message: 'Success (Dev Mode - No Airtable)', error: false };
-  }
-
-  try {
-    const base = new Airtable({ apiKey }).base(baseId);
-
-    await base(tableName).create([
-      {
-        fields: {
-          Email: validated.data.email,
-          Capabilities: validated.data.capabilities || '',
-          Date: new Date().toISOString(),
+            return { success: false, error: data.error?.message || 'Failed to save RSVP to Airtable.' };
         }
-      }
-    ]);
 
-    return { message: 'RSVP Confirmed!', error: false };
-  } catch (e) {
-    console.error('Airtable Error:', e);
-    return { message: 'Failed to submit RSVP. Please try again.', error: true };
-  }
+        return { success: true };
+    } catch (error) {
+        console.error('RSVP Submission Exception:', error);
+        return { success: false, error: 'A network error occurred while submitting your RSVP.' };
+    }
 }
