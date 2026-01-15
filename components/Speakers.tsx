@@ -23,7 +23,7 @@ const speakers = [
 const Speakers = () => {
     return (
         <section
-            className="relative py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
+            className="relative py-16 md:py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
             style={{
                 background: 'linear-gradient(180deg, #1C4EF1 0%, #1A3CB6 100%)'
             }}
@@ -38,11 +38,11 @@ const Speakers = () => {
 
             <div className="relative z-10">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-16 text-primary">Featured Speakers</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-12 md:mb-16 text-primary">Featured Speakers</h2>
 
-                    <div className="space-y-16">
+                    <div className="space-y-12 md:space-y-16">
                         {speakers.map((speaker, index) => (
-                            <div key={index} className="flex flex-col md:flex-row gap-12 items-start">
+                            <div key={index} className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                                 <div className="relative w-full md:w-[320px] aspect-square rounded-2xl overflow-hidden shadow-2xl flex-shrink-0">
                                     <Image
                                         src={speaker.image}
@@ -53,8 +53,8 @@ const Speakers = () => {
                                     />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-3xl font-bold text-secondary mb-4">{speaker.name}</h3>
-                                    <p className="text-xl md:text-2xl leading-relaxed text-white">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-secondary mb-3 md:mb-4">{speaker.name}</h3>
+                                    <p className="text-lg md:text-2xl leading-relaxed text-white">
                                         {speaker.role}
                                     </p>
                                 </div>
@@ -64,7 +64,7 @@ const Speakers = () => {
                 </div>
 
                 {/* Additional Perspectives Banner */}
-                <div className="mt-24 max-w-[1240px] mx-auto relative rounded-lg overflow-hidden shadow-2xl h-[224px] flex items-center justify-start px-20">
+                <div className="mt-16 md:mt-24 max-w-[1240px] mx-auto relative rounded-lg overflow-hidden shadow-2xl flex items-center justify-start px-6 py-10 md:px-20 md:py-12 min-h-[224px]">
                     <Image
                         src="/expert-bg.png"
                         alt="Network Background"
@@ -75,17 +75,16 @@ const Speakers = () => {
                     <div className="absolute inset-0 bg-blue-900/30 backdrop-brightness-75" />
 
                     <div className="relative z-10 max-w-4xl pt-2">
-                        <h3 className="text-[28px] md:text-[32px] font-black text-[#00FFFF] mb-4 leading-tight">
+                        <h3 className="text-2xl md:text-[32px] font-black text-[#00FFFF] mb-3 md:mb-4 leading-tight">
                             Additional Expert Perspectives
                         </h3>
-                        <p className="text-[20px] md:text-[24px] font-medium text-white leading-relaxed opacity-95">
+                        <p className="text-lg md:text-[24px] font-medium text-white leading-relaxed opacity-95">
                             Invited experts from leading consulting and enterprise learning organizations will contribute short perspectives, offering insight into how large organizations are evolving skills and leadership models in the AI era.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-
     );
 };
 

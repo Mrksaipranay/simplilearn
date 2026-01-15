@@ -32,14 +32,14 @@ const RSVPForm = () => {
     };
 
     return (
-        <div className="w-full" style={{maxWidth: '881px'}}>
+        <div className="w-full max-w-[881px]">
             <form
                 onSubmit={handleSubmit}
-                className="flex flex-col md:flex-row items-center gap-6"
+                className="flex flex-col md:flex-row items-center gap-4 md:gap-6"
             >
                 {/* Email Input */}
-                <div className="flex-1 relative flex items-center rounded-lg border border-black/5 bg-[#FDFDFD] shadow-sm w-full" style={{height: '81px'}}>
-                    <Mail className="absolute left-6 text-gray-400 w-6 h-6" />
+                <div className="flex-1 relative flex items-center rounded-lg border border-black/5 bg-[#FDFDFD] shadow-sm w-full h-[60px] md:h-[81px]">
+                    <Mail className="absolute left-4 md:left-6 text-gray-400 w-5 h-5 md:w-6 md:h-6" />
 
                     <input
                         type="email"
@@ -54,11 +54,11 @@ const RSVPForm = () => {
                         disabled={status === 'loading'}
                         className="
               w-full h-full
-              pl-16 pr-6
+              pl-12 md:pl-16 pr-4 md:pr-6
               bg-transparent
               text-black
               placeholder:text-gray-400
-              text-[18px] font-medium
+              text-base md:text-[18px] font-medium
               border-none
               focus:outline-none focus:ring-0
             "
@@ -71,6 +71,7 @@ const RSVPForm = () => {
                     disabled={status === 'loading'}
                     className="
             w-full md:w-[251px]
+            h-[60px] md:h-[81px]
             rounded-lg
             text-white font-bold
             flex items-center justify-center
@@ -81,12 +82,9 @@ const RSVPForm = () => {
             shadow-[0_10px_30px_rgba(245,171,64,0.3)]
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F5AB40]
             shrink-0
+            bg-[#F5AB40]
+            text-lg md:text-[20px]
           "
-                    style={{
-                        height: '81px',
-                        backgroundColor: '#F5AB40',
-                        fontSize: '20px'
-                    }}
                 >
                     {status === 'loading' ? 'Processing...' : 'RSVP Now'}
                 </button>
